@@ -1,0 +1,36 @@
+﻿@page "/lista-articulos"
+@using AP1_P1_KimberlinSantiago.Models
+@inject AP1_P1_KimberlinSantiago.Services.ArticuloService ArticuloService
+
+<h3>Lista de Artículos</h3>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Descripción</th>
+            <th>Costo</th>
+            <th>Ganancia</th>
+            <th>Precio</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var articulo in articulos)
+        {
+            <tr>
+                <td>@articulo.ArticuloId</td>
+                <td>@articulo.Descripcion</td>
+                <td>@articulo.Costo</td>
+                <td>@articulo.Ganancia</td>
+                <td>@articulo.Precio</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@code {
+    private IEnumerable<Services.Articulo> articulos;
+
+    protected override void OnInitialized() => articulos = ArticuloService.GetAll();
+}
+
